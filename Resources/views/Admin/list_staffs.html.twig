@@ -1,0 +1,115 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'expertise.staff.list.title'|trans|capitalize }}{% endblock %}
+
+{% block headingactions %}
+<div class="heading_actions">
+    <a href="{{ url('puzzle_admin_expertise_staff_create') }}">
+        <span class="uk-text-bold">{{ 'expertise.staff.list.new'|trans|upper }}</span>
+        <i class="fa fa-plus-circle"></i>
+    </a>
+</div>
+{% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <em>{{ "expertise.staff.list.title"|trans|capitalize }}</em>
+{% endblock %}
+
+
+{% block content %}
+    <div id="page_content_inner">
+        <div class="uk-width-1-1">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <table id="dt_individual_search" class="uk-table uk-table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="no-sort">
+                                    {% if staffs is not empty %}
+                                        <div class="toggle-action uk-hidden">
+                                            <select class="grouped-actions">
+                                                <option value="">{{ 'expertise.staff.list.grouped_actions'|trans }}</option>
+                                                <option value="delete">{{ 'expertise.staff.list.delete'|trans }}</option>
+                                            </select>
+                                            <input type="hidden" value="{{ staffs|length|default('0') }}" id="toggle-items-count">
+                                            <input type="hidden" value="0" id="toggle-items-checked-count">
+                                        </div>
+                                    {% endif %}
+                                </th>
+                                <th>{{ 'expertise.staff.list.full_name'|trans }}</th>
+                                <th>{{ 'expertise.staff.list.service'|trans }}</th>
+                                <th>{{ 'expertise.staff.list.position'|trans }}</th>
+                                <th class="uk-text-right no-sort">{{ 'expertise.staff.list.actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for staff in staffs %}
+                                <tr class="toggleable" id="item-{{ staff.id }}">
+                                    <td>
+                                        <a class="uk-text-muted uk-text-small uk-text-left toggleable-btn-select" href="#">
+                                            <i class="material-icons md-24 toggle-icon toggle-item" id="toggle-item-{{ staff.id }}">&#xE835;</i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('puzzle_admin_expertise_staff_show', { 'id': staff.id }) }}">{{ staff }}</a>
+                                    </td>
+                                    <td>{{ staff.service.name|default('expertise.staff.list.undefined'|trans) }}</td>
+                                    <td>{{ staff.position }}</td>
+                                    <td class="uk-text-right">
+                                        <div class="uk-button-dropdown" data-uk-dropdown="{pos:'bottom-right'}">
+                                            <a><i class="fa fa-ellipsis-h"></i></a>
+                                            <div class="uk-dropdown uk-dropdown-small uk-text-left" aria-hidden="true">
+                                                <ul class="uk-nav uk-nav-dropdown">
+                                                    <li>
+                                                        <a href="{{ url('puzzle_admin_expertise_staff_show', {'id': staff.id}) }}">
+                                                            <i class="fa fa-eye"></i>
+                                                            {{ 'expertise.staff.list.show'|trans }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ url('puzzle_admin_expertise_staff_update', {'id': staff.id}) }}">
+                                                            <i class="fa fa-pencil"></i>
+                                                            {{ 'expertise.staff.list.update'|trans }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" data-route="{{ url('puzzle_admin_expertise_staff_delete', {'id': staff.id}) }}" data-text="{{ 'expertise.staff.delete.description'|trans({'%staff%': staff }) }}" data-label="{{ staff }}" class="remove-item">
+                                                            <i class="fa fa-trash-o uk-text-danger"></i>
+                                                            {{ 'expertise.staff.list.delete'|trans }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$('body').on('change', '.grouped-actions', function(e){
+			e.preventDefault();
+			switch($(this).val()){
+				case 'delete':
+					var modalId = 'delete-list-modal';
+
+					UIkit.modal("#" + modalId).show();
+                    console.log($('#' + modalId).find('#delete-list-btn'));
+					$('#' + modalId).find('#delete-list-btn').attr('data-delete-item-route', 'puzzle_admin_expertise_staff_delete');
+				default:
+					break;
+			}
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'expertise.project.create.title'|trans|capitalize }} {% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <a href=" {{ url('puzzle_admin_expertise_project_list') }} ">
+       {{ 'expertise.project.list.title'|trans|capitalize }}
+    </a>
+    <i class="fa fa-chevron-right"></i>
+    <em>{{ "expertise.project.create.title"|trans|capitalize }}</em>
+{% endblock %}
+
+{% block content %}
+    <div id="page_content_inner">
+        {% include 'ExpertiseBundle:Admin:form_project.html.twig' with { 'form' : form } %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    'bundles/media/js/upload.js'
+    output='compiled/js/puzzle_admin_expertise_project_create.min.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

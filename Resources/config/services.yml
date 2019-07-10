@@ -1,0 +1,17 @@
+services:
+#    expertise.example:
+#        class: ExpertiseBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+# Twig extension
+    expertise.twig.extension:
+        class: Puzzle\ExpertiseBundle\Twig\ExpertiseExtension
+        arguments: [ '@doctrine.orm.entity_manager', "@knp_paginator" ]
+        public: false
+        tags:
+            - { name: twig.extension }
+# Listeners
+    expertise.contact_listener:
+        class: Puzzle\ExpertiseBundle\Listener\ContactListener
+        arguments: [ "@mailer", "%expertise.contact.enable_mail_channel%", "%expertise.contact.email_address%"]
+        tags:
+            - { name: kernel.event_listener, event: "expertise.contact.created", method: onCreated }

@@ -1,0 +1,117 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ "expertise.staff.show.title"|trans|capitalize }} {{ staff }} {% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <a href=" {{ url('puzzle_admin_expertise_staff_list') }} ">
+       {{ 'expertise.staff.list.title'|trans|capitalize }}
+    </a>
+    <i class="fa fa-chevron-right"></i>
+    <em>{{ "expertise.staff.show.title"|trans|capitalize }}</em>
+{% endblock %}
+
+{% block content %}
+     <div id="page_content_inner">
+        <div class="uk-grid uk-grid-medium" data-uk-grid-margin>
+            <div class="uk-width-1-2">
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.full_name'|trans }} : </label>
+                            <span>{{ staff }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.service'|trans }} : </label>
+                            <span>{{ staff.service is not empty ? staff.service.name : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.email'|trans }} : </label>
+                            <span>{{ staff.email is not empty ? staff.email : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.phone_number'|trans }} : </label>
+                            <span>{{ staff.phoneNumber is not empty ? staff.phoneNumber : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.position'|trans }} : </label>
+                            <span>{{ staff.position is not empty ? staff.position : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.picture'|trans }} : </label>
+                            {% if staff.picture is not empty %}
+                                {% set file = puzzle_media_file(staff.picture) %}
+                                <a href="{{ file is not empty ? url('puzzle_admin_media_file_show', {'id': file.id}) : staff.picture }}" class="show-modal">
+                                    {{ 'expertise.staff.show.view'|trans }}
+                                </a>
+                            {% else %}
+                            	<span>{{ 'expertise.staff.show.undefined'|trans }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.description'|trans }} : </label>
+                            {% if staff.description is not empty %}
+                                <span>{{ staff.description }}</span>
+                            {% else %}
+                            	<span>{{ 'expertise.staff.show.undefined'|trans }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-1-2">
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.facebook'|trans }} : </label>
+                            <span>{{ staff.facebook is not empty ? staff.facebook : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.twitter'|trans }} : </label>
+                            <span>{{ staff.twitter is not empty ? staff.twitter : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.linkedin'|trans }} : </label>
+                            <span>{{ staff.linkedin is not empty ? staff.linkedin : 'expertise.staff.show.undefined'|trans }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.created_by'|trans }} : </label>
+                            <span>{{ staff.createdBy }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.created_at'|trans }} : </label>
+                            <span>{{ date_time_ago(staff.createdAt) }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.updated_by'|trans }} : </label>
+                            <span>{{ staff.updatedBy }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.staff.show.updated_at'|trans }} : </label>
+                            <span>{{ date_time_ago(staff.updatedAt) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-text-center uk-margin-top">
+                <a href="{{ url('puzzle_admin_expertise_staff_update', { 'id': staff.id }) }}" class="md-btn md-btn-primary" id="{{ staff.id }}">
+                    <i class="fa fa-pencil"></i>
+                    {{ "expertise.staff.show.update"|trans }}
+                </a>
+                <a href="#" class="remove-item md-btn md-btn-danger" data-route="{{ url('puzzle_admin_expertise_staff_delete', {'id' : staff.id}) }}" data-label="{{ staff }}" data-title="{{ 'expertise.staff.delete.title' }}" data-text="{{ 'expertise.staff.delete.description'|trans({'%staff%': staff}) }}">
+                    <i class="fa fa-trash-o"></i>
+                    {{ "expertise.staff.show.delete"|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% trans_default_domain 'expertise' %}
+
+<div class="uk-modal-dialog">
+    <div class="uk-modal-header"><h3>{{ "expertise.partner.show.title"|trans }}</h3></div>
+    <div class="uk-modal-body">
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.name'|trans }}</label> :
+            <span>{{ partner.name }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.location'|trans }}</label> :
+            <span>{{ partner.location }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.tags'|trans }}</label> :
+            {% for tag in partner.tags %}
+            	<span class="uk-badge">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.created_at'|trans }}</label> :
+            <span>{{ date_time_ago(partner.createdAt) }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.created_by'|trans }}</label> :
+            <span>{{ partner.createdBy }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.updated_at'|trans }}</label> :
+            <span>{{ date_time_ago(partner.updatedAt) }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.partner.show.updated_by'|trans }}</label> :
+            <span>{{ partner.updatedBy }}</span>
+        </div>
+    </div>
+    <div class="uk-modal-footer uk-text-right">
+    	<a href="{{ url('puzzle_admin_expertise_partner_update', { 'id': partner.id }) }}" class="md-btn md-btn-primary" id="{{ partner.id }}">
+            <i class="fa fa-pencil"></i>
+            {{ "expertise.partner.show.update"|trans }}
+        </a>
+        <a href="#" class="remove-item md-btn md-btn-danger" data-route="{{ url('puzzle_admin_expertise_partner_delete', {'id' : partner.id}) }}" data-label="{{ partner.name }}" data-title="{{ 'expertise.partner.delete.title' }}" data-text="{{ 'expertise.partner.delete.description'|trans({'%partnerName%': partner.name}) }}">
+            <i class="fa fa-trash-o"></i>
+            {{ "expertise.partner.show.delete"|trans }}
+        </a>
+        <button type="button" class="md-btn uk-modal-close">
+            {{ 'expertise.partner.show.close'|trans }}
+        </button>
+    </div>
+</div>

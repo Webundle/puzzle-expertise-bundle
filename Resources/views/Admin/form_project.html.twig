@@ -1,0 +1,70 @@
+{% trans_default_domain 'expertise' %}
+
+{{ form_start(form, {'attr': {'id': 'form_validation', 'class': 'uk-form-stacked'}}) }}
+    <div class="uk-grid uk-grid-medium" data-uk-grid-margin>
+        <div class="uk-width-xLarge-7-10 uk-width-large-7-10">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-grid uk-grid-divider uk-grid-medium" data-uk-grid-margin>
+                        <div class="uk-width-large-1-1">
+                            <div class="uk-form-row">
+                                {{ form_label(form.name, 'expertise.project.form.name'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                                {{ form_widget(form.name, {'attr' : {'class': 'md-input'}}) }}
+                            </div>
+                            <div class="uk-form-row">
+                                {{ form_label(form.shortDescription, 'expertise.project.form.short_description'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                                {{ form_widget(form.shortDescription, {'attr' : {'class': 'md-input'}}) }}
+                            </div>
+                            <div class="uk-form-row">
+                                {{ form_widget(form.description, {'id': 'wysiwyg_ckeditor'}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ render(controller('MediaBundle:Admin:embedFile', {'formData': form.pictures, 'data': project is defined ? project.pictures|join(',') : null, 'type': 'picture', 'context': 'expertise/project', 'multiple': true })) }}
+        </div>
+        <div class="uk-width-xLarge-3-10 uk-width-large-3-10">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-form-row">
+                        {{ form_label(form.service, 'expertise.project.form.service'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {{ form_widget(form.service, {'attr' : {'data-md-selectize': true}}) }}
+                    </div>
+                    <div class="uk-form-row">
+                        {{ form_label(form.client, 'expertise.project.form.client'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {{ form_widget(form.client, {'attr' : {'class': 'md-input'}}) }}
+                    </div>
+                    <div class="uk-form-row">
+                        {{ form_label(form.startedAt, 'expertise.project.form.started_at'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {% if project is defined and form.startedAt is not empty %}
+                            {{ form_widget(form.startedAt, {'value': project.startedAt|date('d-m-Y H:i'), 'attr': {'class': 'datepicker'}}) }}
+                        {% else %}
+                            {{ form_widget(form.startedAt, {'attr': {'class': 'datepicker'}}) }}
+                        {% endif %}
+                    </div>
+                    <div class="uk-form-row">
+                        {{ form_label(form.endedAt, 'expertise.project.form.ended_at'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {% if project is defined and form.endedAt is not empty %}
+                            {{ form_widget(form.endedAt, {'value': project.endedAt|date('d-m-Y H:i'), 'attr': {'class': 'datepicker', 'width': '100%'}}) }}
+                        {% else %}
+                            {{ form_widget(form.endedAt, {'attr': {'class': 'datepicker'}}) }}
+                        {% endif %}
+                    </div>
+                    <div class="uk-form-row">
+                        {{ form_label(form.location, 'expertise.project.form.location'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {{ form_widget(form.location, {'attr' : {'class': 'md-input'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-margin-top">
+        <a class="md-btn md-btn-default" href="{{ project is defined ? url('puzzle_admin_expertise_project_show', {'id': project.id}) : url('puzzle_admin_expertise_project_list') }}">
+            {{ 'expertise.project.form.back'|trans }}
+        </a>
+        <button class="md-btn md-btn-success" type="submit">
+                {{ project is defined ? 'expertise.project.form.update'|trans : 'expertise.project.form.create'|trans }}
+        </button>
+    </div>
+{{ form_end(form) }}

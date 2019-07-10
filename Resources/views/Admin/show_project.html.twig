@@ -1,0 +1,115 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ "expertise.project.show.title"|trans|capitalize }} {{ project.name }} {% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <a href=" {{ url('puzzle_admin_expertise_project_list') }} ">
+       {{ 'expertise.project.list.title'|trans|capitalize }}
+    </a>
+    <i class="fa fa-chevron-right"></i>
+    <em>{{ "expertise.project.show.title"|trans|capitalize }}</em>
+{% endblock %}
+
+{% block content %}
+     <div id="page_content_inner">
+        <div class="uk-grid uk-grid-medium" data-uk-grid-margin>
+            <div class="uk-width-1-2">
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.name'|trans }} : </label>
+                            <span>{{ project.name }}</span>
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.short_description'|trans }} : </label>
+                            {% if project.shortDescription is not empty %}
+                                <span>{{ project.shortDescription }}</span>
+                            {% else %}
+                            	<span>{{ 'expertise.project.show.undefined'|trans }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.started_at'|trans }} : </label>
+                            {% if project.startedAt is not empty %}
+                                <span>{{ project.startedAt|date('d/m/Y') }}</span>
+                            {% else %}
+                            	<span>{{ 'expertise.project.show.undefined'|trans }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.ended_at'|trans }} : </label>
+                            {% if project.endedAt is not empty %}
+                                <span>{{ project.endedAt|date('d/m/Y') }}</span>
+                            {% else %}
+                            	<span>{{ 'expertise.project.show.undefined'|trans }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-1-2">
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.created_by'|trans }} : </label>
+                            <span>{{ project.createdBy }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.created_at'|trans }} : </label>
+                            <span>{{ date_time_ago(project.createdAt) }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.updated_by'|trans }} : </label>
+                            <span>{{ project.updatedBy }}</span>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <label class="uk-text-bold">{{ 'expertise.project.show.updated_at'|trans }} : </label>
+                            <span>{{ date_time_ago(project.updatedAt) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%  if project.description is not empty %}
+            	<div class="uk-width-1-1">
+                    <div class="md-card">
+                        <div class="md-card-content">
+                            {{ project.description|raw }}
+                        </div>
+                    </div>
+                </div>
+			{% endif %}
+
+            {% if project.pictures is not empty %}
+                <div class="uk-width-1-1 uk-margin-top">
+                    <div class="md-card">
+                        <div class="md-card-content">
+                            {% set length = project.pictures|length %}
+                            {% set width = 100 / length  %}
+                            {% for picture in project.pictures %}
+                                <div style="display:inline-block;width:{{ width}}%" class="uk-margin-small-bottom">
+                                    <img src="{{ picture }}" width="100%"/>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="uk-text-center uk-margin-top">
+                <a href="{{ url('puzzle_admin_expertise_project_update', { 'id': project.id }) }}" class="md-btn md-btn-primary" id="{{ project.id }}">
+                    <i class="fa fa-pencil"></i>
+                    {{ "expertise.project.show.update"|trans }}
+                </a>
+                <a href="#" class="remove-item md-btn md-btn-danger" data-route="{{ url('puzzle_admin_expertise_project_delete', {'id' : project.id}) }}" data-label="{{ project.name }}" data-title="{{ 'expertise.project.delete.title' }}" data-text="{{ 'expertise.project.delete.description'|trans({'%projectName%': project.name}) }}">
+                    <i class="fa fa-trash-o"></i>
+                    {{ "expertise.project.show.delete"|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

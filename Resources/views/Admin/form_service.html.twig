@@ -1,0 +1,51 @@
+{% trans_default_domain 'expertise' %}
+
+{{ form_start(form) }}
+    <div class="uk-grid uk-grid-medium" data-uk-grid-margin>
+        <div class="uk-width-xLarge-7-10 uk-width-large-7-10">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-width-large-1-1">
+                        <div class="uk-form-row">
+                            {{ form_label(form.name, 'expertise.service.form.name'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                            {{ form_widget(form.name, {'attr': {'class': 'md-input'}}) }}
+                        </div>
+                        <div class="uk-form-row">
+                            {{ form_label(form.shortDescription, 'expertise.service.form.short_description'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                            {{ form_widget(form.shortDescription, {'attr': {'class': 'md-input'}}) }}
+                        </div>
+                        <div class="uk-form-row">
+                            <div>
+                                {{ form_widget(form.description, {'id': 'wysiwyg_ckeditor'}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-xLarge-3-10 uk-width-large-3-10">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-form-row">
+                        {{ form_label(form.classIcon, 'expertise.service.form.class_icon'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {{ form_widget(form.classIcon, {'attr': {'class': 'md-input'}}) }}
+                    </div>
+                    <div class="uk-form-row">
+                        {{ form_label(form.ranking, 'expertise.service.form.ranking'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+                        {{ form_widget(form.ranking, {'attr': {'class': 'md-input'}}) }}
+                    </div>
+                </div>
+            </div>
+            
+            {{ render(controller('MediaBundle:Admin:embedFile', {'formData': form.picture, 'data': service is defined ? service.picture : null, 'type': 'picture', 'context': 'expertise/service', 'multiple': false })) }}
+        </div>
+    </div>
+    <div class="uk-text-left uk-margin-top">
+        <a class="md-btn md-btn-default" href="{{ service is defined ? url('puzzle_admin_expertise_service_show', {'id': service.id}) : url('puzzle_admin_expertise_service_list') }}">
+            {{ 'expertise.service.form.back'|trans }}
+        </a>
+        <button class="md-btn md-btn-success" type="submit">
+            {{ service is defined ? 'expertise.service.form.update'|trans : 'expertise.service.form.create'|trans }}
+        </button>
+    </div>
+{{ form_end(form) }}

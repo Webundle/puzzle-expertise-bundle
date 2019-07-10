@@ -1,0 +1,52 @@
+{% trans_default_domain 'expertise' %}
+
+<div class="uk-modal-dialog">
+    <div class="uk-modal-header"><h3>{{ 'expertise.faq.show.title'|trans }}</h3></div>
+    <div class="uk-modal-body">
+    	<div class="uk-grid uk-grid-medium" data-uk-grid-margin>
+    		<div class="uk-width-1-2">
+    			<div class="uk-margin-small-bottom">
+                    <label class="uk-text-bold">{{ 'expertise.faq.show.created_by'|trans }}</label> :
+                    <span>{{ faq.createdBy }}</span>
+                </div>
+                <div class="uk-margin-small-bottom">
+                    <label class="uk-text-bold">{{ 'expertise.faq.show.updated_at'|trans }}</label> :
+                    <span>{{ date_time_ago(faq.updatedAt) }}</span>
+                </div>
+    		</div>
+    		<div class="uk-width-1-2">
+    			<div class="uk-margin-small-bottom">
+                    <label class="uk-text-bold">{{ 'expertise.faq.show.updated_by'|trans }}</label> :
+                    <span>{{ faq.updatedBy }}</span>
+                </div>
+                <div class="uk-margin-small-bottom">
+                    <label class="uk-text-bold">{{ 'expertise.faq.show.created_at'|trans }}</label> :
+                    <span>{{ date_time_ago(faq.createdAt) }}</span>
+                </div>
+    		</div>
+    	</div>
+       <div class="uk-wdith-1-1 uk-margin-top">
+       		 <div class="uk-margin-small-bottom">
+                <label class="uk-text-bold">{{ 'expertise.faq.show.question'|trans }}</label> :
+                <span>{{ faq.question }}</span>
+            </div>
+            <div class="uk-margin-small-bottom">
+                <label class="uk-text-bold">{{ 'expertise.faq.show.answer'|trans }}</label> :
+                <p>{{ faq.answer }}</p>
+            </div>
+       </div>
+    </div>
+    <div class="uk-modal-footer uk-text-right">
+    	<a href="{{ url('puzzle_admin_expertise_faq_update', { 'id': faq.id }) }}" class="md-btn md-btn-primary" id="{{ faq.id }}">
+            <i class="fa fa-pencil"></i>
+            {{ "expertise.faq.show.update"|trans }}
+        </a>
+        <a href="#" class="remove-item md-btn md-btn-danger" data-route="{{ url('puzzle_admin_expertise_faq_delete', {'id' : faq.id}) }}" data-label="{{ faq.question }}" data-title="{{ 'expertise.faq.delete.title' }}" data-text="{{ 'expertise.faq.delete.description'|trans({'%faq%': faq.question}) }}">
+            <i class="fa fa-trash-o"></i>
+            {{ "expertise.faq.show.delete"|trans }}
+        </a>
+        <button type="button" class="md-btn uk-modal-close">
+            {{ 'expertise.faq.show.close'|trans }}
+        </button>
+    </div>
+</div>

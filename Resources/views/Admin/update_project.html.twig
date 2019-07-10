@@ -1,0 +1,33 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ "expertise.project.update.title"|trans|capitalize }} {% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <a href=" {{ url('puzzle_admin_expertise_project_list') }} ">
+       {{ 'expertise.project.list.title'|trans|capitalize }}
+    </a>
+    <i class="fa fa-chevron-right"></i>
+    <em>{{ "expertise.project.update.title"|trans|capitalize }}</em>
+{% endblock %}
+
+{% block content %}
+    <div id="page_content_inner">
+        {% include 'ExpertiseBundle:Admin:form_project.html.twig' with {'form': form, 'project': project} %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    'bundles/media/js/upload.js'
+    output='compiled/js/puzzle_puzzle_admin_expertise_project_update.min.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        altair_form_file_upload.preview();
+    </script>
+{% endblock %}

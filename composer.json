@@ -1,0 +1,31 @@
+{
+	"name" : "webundle/puzzle-expertise-bundle",
+	"description" : "Manage expertise",
+	"type" : "symfony-bundle",
+	"authors" : [{
+			"name" : "AGNES Gnagne Cedric",
+			"email" : "cecenho55@gmail.com"
+		}
+	],
+	"keywords" : [
+		"expertise service project staff faq"
+	],
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.5.9",
+		"webundle/puzzle-admin-bundle" : "^1.0",
+		"webundle/puzzle-user-bundle" : "^1.0",
+		"webundle/puzzle-media-bundle" : "^1.0"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"Puzzle\\ExpertiseBundle" : ""
+		}
+	},
+	"target-dir" : "Puzzle/ExpertiseBundle",
+	"extra" : {
+		"branch-alias" : {
+			"dev-master" : "1.0-dev"
+		}
+	}
+}

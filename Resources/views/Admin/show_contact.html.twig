@@ -1,0 +1,56 @@
+{% trans_default_domain 'expertise' %}
+
+<div class="uk-modal-dialog">
+    <div class="uk-modal-header"><h3>{{ "expertise.contact.show.title"|trans }}</h3></div>
+    <div class="uk-modal-body">
+	    <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.subject'|trans }}</label> :
+            <span>{{ contact.subject }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.full_name'|trans }}</label> :
+            <span>{{ contact.fullName }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.email'|trans }}</label> :
+            <span>{{ contact.email }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.phone_number'|trans }}</label> :
+            <span>{{ contact.phoneNumber }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.service'|trans }}</label> :
+            <a href="{{ url('puzzle_admin_expertise_service_show', {'id': contact.service.id}) }}">{{ contact.service.name }}</a>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.created_at'|trans }}</label> :
+            <span>{{ date_time_ago(contact.createdAt) }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.updated_at'|trans }}</label> :
+            <span>{{ date_time_ago(contact.updatedAt) }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.marked_as_read'|trans }}</label> :
+			{% if contact.markedAsRead == false %}
+				<span class="uk-badge">{{ 'expertise.contact.show.undefined'|trans }}</span>
+			{% else %}
+				<span class="uk-badge uk-badge-success">{{ 'expertise.contact.show.read'|trans }}</span>
+			{% endif %}
+	    </div>
+	    <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.read_at'|trans }}</label> :
+			<span>{{ contact.readAt is not empty ? date_time_ago(contact.readAt) : 'expertise.contact.show.undefined'|trans }}</span>
+	    </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.contact.show.message'|trans }}</label> :
+            <p>{{ contact.message }}</p>
+        </div>
+	</div>
+	<div class="uk-modal-footer uk-text-right">
+	    <button type="button" class="md-btn uk-modal-close">
+	        {{ 'expertise.contact.show.close'|trans }}
+	    </button>
+	</div>
+</div>

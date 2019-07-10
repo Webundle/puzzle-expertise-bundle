@@ -1,0 +1,20 @@
+{% trans_default_domain 'expertise' %}
+
+{% extends 'ExpertiseBundle:Admin:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ "expertise.testimonial.create.title"|trans|capitalize }} {% endblock %}
+
+{% block breadcrumbmodule %}
+    {{ parent() }}
+    <a href=" {{ url('puzzle_admin_expertise_testimonial_list') }} ">
+       {{ 'expertise.testimonial.list.title'|trans|capitalize }}
+    </a>
+    <i class="fa fa-chevron-right"></i>
+    <em>{{ "expertise.testimonial.create.title"|trans|capitalize }}</em>
+{% endblock %}
+
+{% block content %}
+    <div id="page_content_inner">
+        {% include 'ExpertiseBundle:Admin:form_testimonial.html.twig' with {'form': form} %}
+    </div>
+{% endblock %}

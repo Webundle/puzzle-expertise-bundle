@@ -1,0 +1,32 @@
+{% trans_default_domain 'expertise' %}
+
+<div class="uk-modal-dialog">
+    <div class="uk-modal-header"><h3>{{ 'expertise.feature.show.title'|trans }}</h3></div>
+    <div class="uk-modal-body">
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.feature.show.name'|trans }}</label> :
+            <span>{{ feature.name }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.feature.show.icon'|trans }}</label> :
+            <span>{{ feature.icon }}</span>
+        </div>
+        <div class="uk-margin-small-bottom">
+            <label class="uk-text-bold">{{ 'expertise.feature.show.description'|trans }}</label> :
+            <span>{{ feature.description }}</span>
+        </div>
+    </div>
+    <div class="uk-modal-footer uk-text-right">
+    	<a href="{{ url('puzzle_admin_expertise_feature_update', { 'id': feature.id }) }}" class="md-btn md-btn-primary" id="{{ feature.id }}">
+            <i class="fa fa-pencil"></i>
+            {{ "expertise.feature.show.update"|trans }}
+        </a>
+        <a href="#" class="remove-item md-btn md-btn-danger" data-route="{{ url('puzzle_admin_expertise_feature_delete', {'id' : feature.id}) }}" data-label="{{ feature.name }}" data-title="{{ 'expertise.feature.delete.title' }}" data-text="{{ 'expertise.feature.delete.description'|trans({'%featureName%': feature.name}) }}">
+            <i class="fa fa-trash-o"></i>
+            {{ "expertise.feature.show.delete"|trans }}
+        </a>
+        <button type="button" class="md-btn uk-modal-close">
+            {{ 'expertise.feature.show.close'|trans }}
+        </button>
+    </div>
+</div>

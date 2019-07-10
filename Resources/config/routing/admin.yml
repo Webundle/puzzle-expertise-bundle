@@ -1,0 +1,181 @@
+# FAQ
+puzzle_admin_expertise_faq_list:
+    path:     /faq/list
+    defaults: { _controller: ExpertiseBundle:Admin:listFaqs }
+
+puzzle_admin_expertise_faq_create:
+    path:     /faq/create
+    defaults: { _controller: ExpertiseBundle:Admin:createFaq }
+
+puzzle_admin_expertise_faq_show:
+    path:     /faq/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showFaq }
+
+puzzle_admin_expertise_faq_update:
+    path:     /faq/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateFaq }
+
+puzzle_admin_expertise_faq_delete:
+    path:     /faq/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteFaq }
+
+# Partner
+puzzle_admin_expertise_partner_list:
+    path:     /partner/list
+    defaults: { _controller: ExpertiseBundle:Admin:listPartners }
+
+puzzle_admin_expertise_partner_create:
+    path:     /partner/create
+    defaults: { _controller: ExpertiseBundle:Admin:createPartner }
+
+puzzle_admin_expertise_partner_show:
+    path:     /partner/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showPartner }
+    
+puzzle_admin_expertise_partner_update:
+    path:     /partner/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updatePartner }
+
+puzzle_admin_expertise_partner_delete:
+    path:    /partner/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deletePartner }
+
+# Project
+puzzle_admin_expertise_project_list:
+    path:     /project/list
+    defaults: { _controller: ExpertiseBundle:Admin:listProjects }
+
+puzzle_admin_expertise_project_create:
+    path:     /project/create
+    defaults: { _controller: ExpertiseBundle:Admin:createProject }
+
+puzzle_admin_expertise_project_show:
+    path:     /project/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showProject }
+
+puzzle_admin_expertise_project_update:
+    path:     /project/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateProject }
+
+puzzle_admin_expertise_project_delete:
+    path:     /project/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteProject }
+
+# Service
+puzzle_admin_expertise_service_list:
+    path:     /service/list
+    defaults: { _controller: ExpertiseBundle:Admin:listServices }
+
+puzzle_admin_expertise_service_create:
+    path:     /service/create
+    defaults: { _controller: ExpertiseBundle:Admin:createService }
+
+puzzle_admin_expertise_service_show:
+    path:     /service/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showService }
+
+puzzle_admin_expertise_service_update:
+    path:     /service/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateService }
+
+puzzle_admin_expertise_service_delete:
+    path:     /service/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteService }
+
+# Staff
+puzzle_admin_expertise_staff_list:
+    path:     /staff/list
+    defaults: { _controller: ExpertiseBundle:Admin:listStaffs }
+
+puzzle_admin_expertise_staff_create:
+    path:     /staff/create
+    defaults: { _controller: ExpertiseBundle:Admin:createStaff }
+
+puzzle_admin_expertise_staff_show:
+    path:     /staff/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showStaff }
+
+puzzle_admin_expertise_staff_update:
+    path:     /staff/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateStaff }
+
+puzzle_admin_expertise_staff_delete:
+    path:     /staff/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteStaff }
+
+
+# Testimonial
+puzzle_admin_expertise_testimonial_list:
+    path:     /testimonial/list
+    defaults: { _controller: ExpertiseBundle:Admin:listTestimonials }
+
+puzzle_admin_expertise_testimonial_create:
+    path:     /testimonial/create
+    defaults: { _controller: ExpertiseBundle:Admin:createTestimonial }
+
+puzzle_admin_expertise_testimonial_show:
+    path:     /testimonial/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showTestimonial }
+    
+puzzle_admin_expertise_testimonial_update:
+    path:     /testimonial/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateTestimonial }
+
+puzzle_admin_expertise_testimonial_delete:
+    path:     /testimonial/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteTestimonial }
+
+# Feature
+puzzle_admin_expertise_feature_list:
+    path:     /feature/list
+    defaults: { _controller: ExpertiseBundle:Admin:listFeatures }
+
+puzzle_admin_expertise_feature_create:
+    path:     /feature/create
+    defaults: { _controller: ExpertiseBundle:Admin:createFeature }
+
+puzzle_admin_expertise_feature_show:
+    path:     /feature/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showFeature }
+
+puzzle_admin_expertise_feature_update:
+    path:     /feature/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updateFeature }
+
+puzzle_admin_expertise_feature_delete:
+    path:    /feature/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteFeature }
+
+# Pricing
+puzzle_admin_expertise_pricing_list:
+    path:     /pricing/list
+    defaults: { _controller: ExpertiseBundle:Admin:listPricings }
+
+puzzle_admin_expertise_pricing_create:
+    path:     /pricing/create
+    defaults: { _controller: ExpertiseBundle:Admin:createPricing }
+
+puzzle_admin_expertise_pricing_show:
+    path:     /pricing/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showPricing }
+
+puzzle_admin_expertise_pricing_update:
+    path:     /pricing/{id}/update
+    defaults: { _controller: ExpertiseBundle:Admin:updatePricing }
+
+puzzle_admin_expertise_pricing_delete:
+    path:    /pricing/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deletePricing }
+
+# Contact
+puzzle_admin_expertise_contact_list:
+    path:     /contact/list
+    defaults: { _controller: ExpertiseBundle:Admin:listContacts }
+
+puzzle_admin_expertise_contact_show:
+    path:     /contact/{id}/show
+    defaults: { _controller: ExpertiseBundle:Admin:showContact }
+
+puzzle_admin_expertise_contact_delete:
+    path:     /contact/{id}/delete
+    defaults: { _controller: ExpertiseBundle:Admin:deleteContact }

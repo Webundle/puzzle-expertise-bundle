@@ -1,0 +1,26 @@
+{% trans_default_domain 'expertise' %}
+
+{{ form_start(form) }}
+<div class="uk-modal-body">
+    <div class="uk-form-row">
+        {{ form_label(form.name, 'expertise.feature.form.name'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+        {{ form_widget(form.name, {'attr': {'class': 'md-input'}}) }}
+    </div>
+    <div class="uk-form-row">
+        {{ form_label(form.icon, 'expertise.feature.form.icon'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+        {{ form_widget(form.icon, {'attr': {'class': 'md-input'}}) }}
+    </div>
+    <div class="uk-form-row">
+        {{ form_label(form.description, 'expertise.feature.form.description'|trans, {'label_attr': {'class': 'uk-form-label'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'md-input', 'rows': 5}}) }}
+    </div>
+</div>
+<div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn uk-modal-close">
+        {{ 'expertise.feature.form.close'|trans }}
+    </button>
+    <button class="md-btn md-btn-success" type="submit">
+        {{ feature is defined ? 'expertise.feature.form.update'|trans : 'expertise.feature.form.create'|trans }}
+    </button>
+</div>
+{{ form_end(form) }}

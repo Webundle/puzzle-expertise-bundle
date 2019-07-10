@@ -1,0 +1,22 @@
+{% trans_default_domain 'expertise' %}
+
+{{ form_start(form) }}
+<div class="uk-modal-body">
+    <div class="uk-margin-medium-bottom">
+        {{ form_label(form.question, 'expertise.faq.form.question'|trans, {'label_attr' : {'class' : 'uk-form-label'}}) }}
+        {{ form_widget(form.question, {'attr' : {'class' : 'md-input'}}) }}
+    </div>
+    <div class="uk-margin-medium-bottom">
+        {{ form_label(form.answer, 'expertise.faq.form.answer'|trans, {'label_attr' : {'class' : 'uk-form-label'}}) }}
+        {{ form_widget(form.answer, {'attr' : {'class' : 'md-input', 'rows' : 10, 'cols' : 10}}) }}
+    </div>
+</div>
+<div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn uk-modal-close">
+        {{ 'expertise.faq.form.close'|trans }}
+    </button>
+    <button class="md-btn md-btn-success" type="submit">
+        {{ faq is defined ? 'expertise.faq.form.update'|trans : 'expertise.faq.form.create'|trans }}
+    </button>
+</div>
+{{ form_end(form) }}
